@@ -1,0 +1,161 @@
+---
+const milestones = [
+  {
+    date: "21 OCT 2024",
+    title: "Nace la idea",
+    description:
+      "Surge la propuesta de crear un círculo que responda a las necesidades académicas de los estudiantes.",
+  },
+  {
+    date: "04 NOV 2024",
+    title: "Se forma el primer grupo",
+    description:
+      "Estudiantes de distintos años se reúnen para construir las primeras propuestas de CIDEPAC.",
+  },
+  {
+    date: "20 DIC 2024",
+    title: "Definimos nuestros ejes",
+    description:
+      "Comienzan las reuniones que consolidan democracia, partidos políticos y cultura política como ejes centrales.",
+  },
+  {
+    date: "18 ENE 2025",
+    title: "Nace CIDEPAC",
+    description:
+      "Se formaliza la fundación del Círculo de Estudios CIDEPAC y se elige su primera junta directiva.",
+  },
+];
+---
+
+<section
+  id="historia"
+  class="border-t border-[#eaded9] bg-[#faf6f3] py-20 lg:py-24"
+>
+  <div class="site-container">
+    <div
+      class="mb-14 flex flex-col justify-between gap-8 md:flex-row md:items-end"
+    >
+      <div>
+        <div class="mb-6 flex items-center gap-4">
+          <span class="font-display text-xl text-cidepac-700">
+            06
+          </span>
+
+          <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+          <span
+            class="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-700"
+          >
+            Nuestra historia
+          </span>
+        </div>
+
+        <h2
+          class="display-title max-w-[670px] text-[3rem] leading-[0.95] text-neutral-950 sm:text-[3.8rem] lg:text-[4.5rem]"
+        >
+          Una idea que comenzó
+          <span class="text-cidepac-700">a tomar forma.</span>
+        </h2>
+      </div>
+
+      <a
+        href="/nosotros#historia"
+        class="focus-ring inline-flex w-fit items-center gap-2 rounded-sm text-sm font-extrabold text-cidepac-700 transition hover:gap-3"
+      >
+        Conoce nuestra historia
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <!-- Desktop timeline -->
+    <div class="relative hidden lg:block">
+      <div
+        class="absolute left-0 right-0 top-[17px] h-px bg-[#d9ccc7]"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="absolute left-0 top-[17px] h-px w-full origin-left bg-cidepac-700"
+        aria-hidden="true"
+      ></div>
+
+      <div class="grid grid-cols-4 gap-8">
+        {
+          milestones.map((item, index) => (
+            <article class="relative pt-12">
+              <div
+                class:list={[
+                  "absolute left-0 top-[9px] z-10 grid size-[17px] place-items-center rounded-full border-4 border-[#faf6f3]",
+                  index === milestones.length - 1
+                    ? "bg-cidepac-orange"
+                    : "bg-cidepac-700",
+                ]}
+                aria-hidden="true"
+              />
+
+              <p
+                class="text-[0.68rem] font-extrabold uppercase tracking-[0.15em] text-cidepac-700"
+              >
+                {item.date}
+              </p>
+
+              <h3
+                class="display-title mt-3 text-[1.65rem] leading-none text-neutral-950"
+              >
+                {item.title}
+              </h3>
+
+              <p class="mt-4 max-w-[260px] text-sm leading-6 text-neutral-600">
+                {item.description}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Mobile timeline -->
+    <div class="relative lg:hidden">
+      <div
+        class="absolute bottom-0 left-[7px] top-2 w-px bg-[#d9ccc7]"
+        aria-hidden="true"
+      ></div>
+
+      <div class="space-y-9">
+        {
+          milestones.map((item, index) => (
+            <article class="relative grid grid-cols-[16px_1fr] gap-6">
+              <div
+                class:list={[
+                  "relative z-10 mt-1 size-[15px] rounded-full border-[4px] border-[#faf6f3]",
+                  index === milestones.length - 1
+                    ? "bg-cidepac-orange"
+                    : "bg-cidepac-700",
+                ]}
+                aria-hidden="true"
+              />
+
+              <div class="pb-3">
+                <p
+                  class="text-[0.68rem] font-extrabold uppercase tracking-[0.15em] text-cidepac-700"
+                >
+                  {item.date}
+                </p>
+
+                <h3
+                  class="display-title mt-2 text-[1.6rem] leading-none text-neutral-950"
+                >
+                  {item.title}
+                </h3>
+
+                <p class="mt-3 text-sm leading-6 text-neutral-600">
+                  {item.description}
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

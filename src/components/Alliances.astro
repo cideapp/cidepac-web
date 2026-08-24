@@ -1,0 +1,142 @@
+---
+const alliances = [
+  {
+    acronym: "CERI",
+    name: "Círculo de Estudios en Relaciones Internacionales",
+    institution: "UNT",
+  },
+  {
+    acronym: "CECIP",
+    name: "Centro de Estudiantes de Ciencia Política",
+    institution: "UNT",
+  },
+  {
+    acronym: "CECOMPOL",
+    name: "Centro de Estudios en Comunicación Política",
+    institution: "UNT",
+  },
+  {
+    acronym: "LOGOS",
+    name: "Taller de Pensamiento e Ideología Política",
+    institution: "UNMSM",
+  },
+  {
+    acronym: "ASESDE",
+    name: "Organización académica aliada",
+    institution: "UARM",
+  },
+  {
+    acronym: "JUDEX",
+    name: "Círculo de Estudios",
+    institution: "UPAO",
+  },
+];
+---
+
+<section
+  id="alianzas"
+  class="border-t border-[#eaded9] bg-white py-20 lg:py-24"
+>
+  <div class="site-container">
+    <div
+      class="mb-12 grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end"
+    >
+      <div>
+        <div class="mb-6 flex items-center gap-4">
+          <span class="font-display text-xl text-cidepac-700">
+            07
+          </span>
+
+          <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+          <span
+            class="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-700"
+          >
+            Alianzas
+          </span>
+        </div>
+
+        <h2
+          class="display-title text-[3rem] leading-[0.95] text-neutral-950 sm:text-[3.8rem] lg:text-[4.3rem]"
+        >
+          Construimos
+          <span class="text-cidepac-700">en comunidad.</span>
+        </h2>
+      </div>
+
+      <p
+        class="max-w-[650px] text-base leading-8 text-neutral-600 lg:justify-self-end"
+      >
+        Trabajamos junto a organizaciones estudiantiles e instituciones
+        académicas para generar espacios de aprendizaje, cooperación e
+        intercambio de experiencias.
+      </p>
+    </div>
+
+    <div
+      class="grid overflow-hidden border border-[#eaded9] sm:grid-cols-2 lg:grid-cols-3"
+    >
+      {
+        alliances.map((alliance) => (
+          <article
+            class="group relative min-h-[190px] border-b border-r border-[#eaded9] p-7 transition-colors duration-300 hover:bg-[#faf6f3]"
+          >
+            <div class="flex h-full flex-col justify-between">
+              <div
+                class="flex size-12 items-center justify-center rounded-full border border-cidepac-700/20 text-cidepac-700 transition duration-300 group-hover:border-cidepac-700 group-hover:bg-cidepac-700 group-hover:text-white"
+                aria-hidden="true"
+              >
+                <svg
+                  width="21"
+                  height="21"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M8 12h8"></path>
+                  <path d="M12 8v8"></path>
+                  <circle cx="12" cy="12" r="9"></circle>
+                </svg>
+              </div>
+
+              <div class="mt-8">
+                <div class="flex items-end justify-between gap-5">
+                  <div>
+                    <h3
+                      class="display-title text-[1.7rem] text-neutral-950 transition-colors group-hover:text-cidepac-700"
+                    >
+                      {alliance.acronym}
+                    </h3>
+
+                    <p
+                      class="mt-2 max-w-[280px] text-xs leading-5 text-neutral-500"
+                    >
+                      {alliance.name}
+                    </p>
+                  </div>
+
+                  <span
+                    class="text-[0.65rem] font-extrabold uppercase tracking-[0.15em] text-cidepac-700"
+                  >
+                    {alliance.institution}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <a
+      href="/alianzas"
+      class="focus-ring mt-8 inline-flex items-center gap-2 rounded-sm text-sm font-extrabold text-cidepac-700 transition hover:gap-3"
+    >
+      Ver nuestras alianzas
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>

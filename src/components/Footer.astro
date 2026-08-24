@@ -1,0 +1,142 @@
+---
+const year = new Date().getFullYear();
+
+const navigation = [
+  { label: "Inicio", href: "/" },
+  { label: "Nosotros", href: "/nosotros" },
+  { label: "Comisiones", href: "/comisiones" },
+  { label: "Actividades", href: "/actividades" },
+];
+
+const contentLinks = [
+  { label: "Artículos", href: "/articulos" },
+  { label: "Alianzas", href: "/alianzas" },
+  { label: "Contacto", href: "#contacto" },
+];
+---
+
+<footer class="bg-[#171111] text-white">
+  <div class="site-container py-14 lg:py-16">
+    <div
+      class="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_0.7fr_0.7fr_1fr]"
+    >
+      <!-- Marca -->
+      <div>
+        <a
+          href="/"
+          class="focus-ring inline-flex items-center gap-3 rounded-sm"
+          aria-label="CIDEPAC - Inicio"
+        >
+          <div
+            class="grid size-11 place-items-center rounded-full border-2 border-white/75"
+            aria-hidden="true"
+          >
+            <span class="font-display text-xl">
+              C
+            </span>
+          </div>
+
+          <span class="font-display text-[1.8rem]">
+            CIDEPAC
+          </span>
+        </a>
+
+        <p
+          class="mt-5 max-w-[360px] text-sm leading-6 text-white/60"
+        >
+          Círculo de Estudios en Democracia, Partidos Políticos y Cultura
+          Política.
+        </p>
+
+        <p
+          class="mt-4 max-w-[360px] text-xs leading-5 text-white/45"
+        >
+          Universidad Nacional de Trujillo<br />
+          Escuela de Ciencia Política y Gobernabilidad
+        </p>
+      </div>
+
+      <!-- Navegación -->
+      <div>
+        <p
+          class="text-[0.68rem] font-extrabold uppercase tracking-[0.17em] text-white/45"
+        >
+          Navegación
+        </p>
+
+        <nav class="mt-5 flex flex-col gap-3">
+          {
+            navigation.map((item) => (
+              <a
+                href={item.href}
+                class="focus-ring w-fit rounded-sm text-sm text-white/70 transition hover:text-white"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+
+      <!-- Contenido -->
+      <div>
+        <p
+          class="text-[0.68rem] font-extrabold uppercase tracking-[0.17em] text-white/45"
+        >
+          Explorar
+        </p>
+
+        <nav class="mt-5 flex flex-col gap-3">
+          {
+            contentLinks.map((item) => (
+              <a
+                href={item.href}
+                class="focus-ring w-fit rounded-sm text-sm text-white/70 transition hover:text-white"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+
+      <!-- Social -->
+      <div>
+        <p
+          class="text-[0.68rem] font-extrabold uppercase tracking-[0.17em] text-white/45"
+        >
+          Síguenos
+        </p>
+
+        <p class="mt-5 text-sm text-white/70">
+          @cidepac.unt
+        </p>
+
+        <a
+          href="https://www.instagram.com/cidepac.unt/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="focus-ring mt-5 inline-flex min-h-11 items-center gap-3 rounded-md border border-white/20 px-4 text-sm font-bold text-white transition hover:border-white/50 hover:bg-white/5"
+        >
+          Instagram
+
+          <span aria-hidden="true">
+            ↗
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col gap-5 border-t border-white/10 pt-7 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>
+        © {year} CIDEPAC. Todos los derechos reservados.
+      </p>
+
+      <p>
+        Trujillo, La Libertad · Perú
+      </p>
+    </div>
+  </div>
+</footer>
