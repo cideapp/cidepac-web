@@ -1,0 +1,142 @@
+---
+const navItems = [
+  { label: "Inicio", href: "/" },
+  { label: "Nosotros", href: "/nosotros" },
+  { label: "Comisiones", href: "/comisiones" },
+  { label: "Actividades", href: "/actividades" },
+  { label: "Artículos", href: "/articulos" },
+  { label: "Alianzas", href: "/alianzas" },
+];
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-[#eaded9]/80 bg-[#fffdfb]/95 backdrop-blur-lg"
+>
+  <div
+    class="site-container flex h-[78px] items-center justify-between gap-8"
+  >
+    <!-- Marca -->
+    <a
+      href="/"
+      class="focus-ring flex shrink-0 items-center gap-3 rounded-sm"
+      aria-label="CIDEPAC - Inicio"
+    >
+      <div
+        class="grid size-11 place-items-center rounded-full border-2 border-cidepac-700 text-cidepac-700"
+        aria-hidden="true"
+      >
+        <span class="font-display text-xl">C</span>
+      </div>
+
+      <div class="leading-none">
+        <span
+          class="font-display block text-[1.65rem] tracking-tight text-cidepac-700"
+        >
+          CIDEPAC
+        </span>
+
+        <span
+          class="mt-1 hidden max-w-[210px] text-[0.58rem] font-semibold leading-[1.25] text-neutral-600 xl:block"
+        >
+          Círculo de Estudios en Democracia,<br />
+          Partidos Políticos y Cultura Política
+        </span>
+      </div>
+    </a>
+
+    <!-- Desktop -->
+    <nav
+      class="hidden items-center gap-7 lg:flex"
+      aria-label="Navegación principal"
+    >
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="focus-ring relative rounded-sm py-2 text-sm font-semibold text-neutral-700 transition-colors duration-200 hover:text-cidepac-700"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="hidden lg:block">
+      <a
+        href="#contacto"
+        class="focus-ring inline-flex min-h-11 items-center justify-center rounded-md bg-cidepac-700 px-6 text-sm font-bold text-white transition duration-200 hover:bg-cidepac-900"
+      >
+        Únete
+      </a>
+    </div>
+
+    <!-- Mobile button -->
+    <button
+      type="button"
+      class="focus-ring grid size-11 place-items-center rounded-md text-cidepac-900 lg:hidden"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-button
+    >
+      <svg
+        width="25"
+        height="25"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <path d="M4 7h16"></path>
+        <path d="M4 12h16"></path>
+        <path d="M4 17h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="hidden border-t border-[#eaded9] bg-[#fffdfb] lg:hidden"
+    data-mobile-menu
+  >
+    <nav
+      class="site-container flex flex-col py-5"
+      aria-label="Navegación móvil"
+    >
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="border-b border-[#efe6e2] py-4 text-base font-semibold text-neutral-800 transition hover:text-cidepac-700"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+
+      <a
+        href="#contacto"
+        class="mt-5 inline-flex min-h-12 items-center justify-center rounded-md bg-cidepac-700 px-5 font-bold text-white"
+      >
+        Únete a CIDEPAC
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const button = document.querySelector("[data-menu-button]");
+  const menu = document.querySelector("[data-mobile-menu]");
+
+  if (button && menu) {
+    button.addEventListener("click", () => {
+      const isOpen = button.getAttribute("aria-expanded") === "true";
+
+      button.setAttribute("aria-expanded", String(!isOpen));
+      menu.classList.toggle("hidden");
+    });
+  }
+</script>

@@ -1,0 +1,83 @@
+---
+const actions = [
+  {
+    number: "01",
+    title: "Aprendemos",
+    description:
+      "Talleres, capacitaciones y espacios de formación para nuestra comunidad.",
+    icon: "✦",
+  },
+  {
+    number: "02",
+    title: "Debatimos",
+    description:
+      "Tertulias, conversatorios y debates sobre temas de actualidad política.",
+    icon: "◌",
+  },
+  {
+    number: "03",
+    title: "Investigamos",
+    description:
+      "Producimos y difundimos investigaciones, artículos y análisis académicos.",
+    icon: "▤",
+  },
+  {
+    number: "04",
+    title: "Participamos",
+    description:
+      "Desarrollamos actividades de proyección, voluntariado y formación ciudadana.",
+    icon: "◎",
+  },
+];
+---
+
+<section class="bg-white py-20 lg:py-28">
+  <div class="site-container">
+    <div class="mb-12 flex items-center gap-4">
+      <span class="font-display text-xl text-cidepac-700">03</span>
+
+      <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+      <span
+        class="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-700"
+      >
+        ¿Qué hacemos?
+      </span>
+    </div>
+
+    <div class="grid gap-px overflow-hidden border border-[#eaded9] bg-[#eaded9] sm:grid-cols-2 lg:grid-cols-4">
+      {
+        actions.map((action) => (
+          <article
+            class="group min-h-[260px] bg-white p-8 transition-colors duration-300 hover:bg-[#faf6f3]"
+          >
+            <div class="flex items-start justify-between">
+              <span
+                class="text-4xl text-cidepac-700"
+                aria-hidden="true"
+              >
+                {action.icon}
+              </span>
+
+              <span
+                class="text-xs font-extrabold tracking-[0.15em] text-neutral-400"
+              >
+                {action.number}
+              </span>
+            </div>
+
+            <h3
+              class="display-title mt-10 text-[1.65rem] text-neutral-950 transition-colors group-hover:text-cidepac-700"
+            >
+              {action.title}
+            </h3>
+
+            <p class="mt-4 text-sm leading-6 text-neutral-600">
+              {action.description}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

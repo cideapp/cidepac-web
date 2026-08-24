@@ -1,0 +1,106 @@
+---
+const areas = [
+  {
+    number: "01",
+    title: "Democracia",
+    description:
+      "Analizamos y promovemos la calidad democrática y la participación ciudadana.",
+    icon: `
+      <path d="M4 20h16"/>
+      <path d="M6 20V9"/>
+      <path d="M10 20V9"/>
+      <path d="M14 20V9"/>
+      <path d="M18 20V9"/>
+      <path d="M3 9h18"/>
+      <path d="m12 3 9 4H3l9-4Z"/>
+    `,
+  },
+  {
+    number: "02",
+    title: "Partidos políticos",
+    description:
+      "Estudiamos su papel, sus dinámicas y los desafíos de la representación política.",
+    icon: `
+      <circle cx="12" cy="6" r="3"/>
+      <path d="M5 21v-2a7 7 0 0 1 14 0v2"/>
+      <path d="M8 13h8"/>
+    `,
+  },
+  {
+    number: "03",
+    title: "Cultura política",
+    description:
+      "Exploramos valores, creencias y prácticas que moldean nuestra vida política.",
+    icon: `
+      <circle cx="12" cy="7" r="3"/>
+      <circle cx="5" cy="17" r="3"/>
+      <circle cx="19" cy="17" r="3"/>
+      <path d="m10 9-3 5"/>
+      <path d="m14 9 3 5"/>
+      <path d="M8 17h8"/>
+    `,
+  },
+];
+---
+
+<section class="bg-[#faf6f3] py-20 lg:py-28">
+  <div class="site-container">
+    <div class="mb-12 flex items-center gap-4">
+      <span class="font-display text-xl text-cidepac-700">02</span>
+
+      <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+      <span
+        class="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-700"
+      >
+        Nuestros ejes
+      </span>
+    </div>
+
+    <div class="grid border-y border-[#ded2ce] md:grid-cols-3">
+      {
+        areas.map((area, index) => (
+          <article
+            class:list={[
+              "group py-10 md:px-8 lg:px-10",
+              index !== 0 && "border-t border-[#ded2ce] md:border-l md:border-t-0",
+            ]}
+          >
+            <div
+              class="grid size-14 place-items-center rounded-full border border-cidepac-700/25 bg-white text-cidepac-700 transition duration-300 group-hover:border-cidepac-700 group-hover:bg-cidepac-700 group-hover:text-white"
+              aria-hidden="true"
+            >
+              <svg
+                width="25"
+                height="25"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                set:html={area.icon}
+              />
+            </div>
+
+            <p
+              class="mt-8 text-xs font-extrabold tracking-[0.15em] text-cidepac-700"
+            >
+              {area.number}
+            </p>
+
+            <h3
+              class="display-title mt-2 text-[1.8rem] leading-none text-neutral-950"
+            >
+              {area.title}
+            </h3>
+
+            <p class="mt-5 max-w-[310px] text-sm leading-6 text-neutral-600">
+              {area.description}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

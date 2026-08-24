@@ -1,17 +1,27 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import FocusAreas from "../components/FocusAreas.astro";
+import WhatWeDo from "../components/WhatWeDo.astro";
+import FeaturedActivity from "../components/FeaturedActivity.astro";
+import ArticlesPreview from "../components/ArticlesPreview.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="CIDEPAC | Democracia, Partidos Políticos y Cultura Política"
+  description="CIDEPAC es un círculo de estudios de la Universidad Nacional de Trujillo dedicado al estudio, investigación y diálogo sobre democracia, partidos políticos y cultura política."
+>
+  <Header />
+
+  <main>
+    <Hero />
+    <About />
+    <FocusAreas />
+    <WhatWeDo />
+    <FeaturedActivity />
+    <ArticlesPreview />
+  </main>
+</BaseLayout>
