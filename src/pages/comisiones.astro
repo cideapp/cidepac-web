@@ -1,0 +1,478 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import Header from "../components/Header.astro";
+import PageHero from "../components/PageHero.astro";
+import CommissionCard from "../components/CommissionCard.astro";
+import FinalCTA from "../components/FinalCTA.astro";
+import Footer from "../components/Footer.astro";
+
+const commissions = [
+  {
+    number: "01",
+    title: "Junta Directiva",
+    description:
+      "Estructura de dirección y coordinación general que articula el funcionamiento institucional de CIDEPAC.",
+    icon: "direction" as const,
+  },
+  {
+    number: "02",
+    title: "Investigación Académica",
+    description:
+      "Área vinculada a la producción académica, artículos, investigaciones y espacios de formación desarrollados por CIDEPAC.",
+    icon: "academic" as const,
+  },
+  {
+    number: "03",
+    title: "Medios y Diseño Digital",
+    description:
+      "Comisión vinculada a la comunicación institucional, difusión y presencia de CIDEPAC en sus plataformas digitales.",
+    icon: "media" as const,
+  },
+  {
+    number: "04",
+    title: "Logística y Economía",
+    description:
+      "Comisión de la estructura interna de CIDEPAC vinculada al soporte de sus actividades y organización operativa.",
+    icon: "logistics" as const,
+  },
+  {
+    number: "05",
+    title: "Talento y Relaciones Institucionales",
+    description:
+      "Área orientada a la comunidad interna y al vínculo institucional de CIDEPAC con otros espacios y organizaciones.",
+    icon: "talent" as const,
+  },
+];
+---
+
+<BaseLayout
+  title="Comisiones | CIDEPAC"
+  description="Conoce la estructura organizacional y las comisiones que forman parte de CIDEPAC."
+>
+  <Header />
+
+  <main>
+
+    <!-- HERO -->
+    <PageHero
+      number="02"
+      eyebrow="Comisiones"
+      title="Equipos distintos."
+      accent="Una misma organización."
+      description="CIDEPAC articula su trabajo mediante una Junta Directiva, comisiones especializadas y colaboradores que participan en el desarrollo académico e institucional del círculo."
+    />
+
+    <!-- INTRODUCCIÓN -->
+    <section class="bg-white py-20 lg:py-24">
+      <div
+        class="site-container grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24"
+      >
+        <div>
+          <p
+            class="text-xs font-extrabold uppercase tracking-[0.17em] text-cidepac-700"
+          >
+            Nuestra estructura
+          </p>
+
+          <h1
+            class="display-title mt-5 text-[3rem] leading-[0.95] text-neutral-950 sm:text-[3.7rem]"
+          >
+            Una comunidad
+            <span class="text-cidepac-700">
+              organizada para actuar.
+            </span>
+          </h1>
+        </div>
+
+        <div class="max-w-[720px]">
+          <p class="text-lg leading-9 text-neutral-700">
+            La organización interna permite distribuir responsabilidades y
+            articular las actividades académicas, institucionales y de
+            difusión desarrolladas por CIDEPAC.
+          </p>
+
+          <!-- Datos generales -->
+          <div
+            class="mt-10 grid gap-px overflow-hidden border border-[#eaded9] bg-[#eaded9] sm:grid-cols-3"
+          >
+            <div class="bg-[#faf6f3] p-6">
+              <p
+                class="display-title text-[2rem] leading-none text-cidepac-700"
+              >
+                +50
+              </p>
+
+              <p class="mt-3 text-xs font-semibold text-neutral-500">
+                Estudiantes en nuestra comunidad
+              </p>
+            </div>
+
+            <div class="bg-[#faf6f3] p-6">
+              <p
+                class="display-title text-[2rem] leading-none text-cidepac-700"
+              >
+                4
+              </p>
+
+              <p class="mt-3 text-xs font-semibold text-neutral-500">
+                Comisiones especializadas
+              </p>
+            </div>
+
+            <div class="bg-[#faf6f3] p-6">
+              <p
+                class="display-title text-[2rem] leading-none text-cidepac-700"
+              >
+                3
+              </p>
+
+              <p class="mt-3 text-xs font-semibold text-neutral-500">
+                Ejes temáticos
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMISIONES -->
+    <section
+      class="border-t border-[#eaded9] bg-[#faf6f3] py-20 lg:py-24"
+    >
+      <div class="site-container">
+
+        <div class="mb-12">
+          <div class="mb-6 flex items-center gap-4">
+            <span class="font-display text-xl text-cidepac-700">
+              01
+            </span>
+
+            <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+            <span
+              class="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-700"
+            >
+              Áreas de trabajo
+            </span>
+          </div>
+
+          <h2
+            class="display-title max-w-[780px] text-[3rem] leading-[0.95] text-neutral-950 sm:text-[3.8rem] lg:text-[4.3rem]"
+          >
+            Personas organizadas alrededor
+            <span class="text-cidepac-700">
+              de un propósito común.
+            </span>
+          </h2>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {
+            commissions.map((commission) => (
+              <CommissionCard {...commission} />
+            ))
+          }
+
+          <!-- COLABORADORES -->
+          <article
+            class="relative flex min-h-[360px] flex-col justify-between overflow-hidden bg-cidepac-700 p-7 text-white sm:p-8"
+          >
+            <!-- Decoración -->
+            <div
+              class="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full border-[38px] border-cidepac-orange/25"
+              aria-hidden="true"
+            ></div>
+
+            <div class="relative z-10">
+              <div
+                class="grid size-14 place-items-center rounded-full border border-white/25 bg-white/10"
+                aria-hidden="true"
+              >
+                <svg
+                  width="25"
+                  height="25"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="8" cy="8" r="3"></circle>
+                  <circle cx="17" cy="9" r="2"></circle>
+                  <path d="M2 21v-2a6 6 0 0 1 12 0v2"></path>
+                  <path d="M14 16a5 5 0 0 1 8 4v1"></path>
+                </svg>
+              </div>
+
+              <p
+                class="mt-9 text-[0.7rem] font-extrabold uppercase tracking-[0.16em] text-cidepac-orange"
+              >
+                Comunidad
+              </p>
+
+              <h2
+                class="display-title mt-3 text-[2rem] leading-[0.98]"
+              >
+                Colaboradores
+              </h2>
+
+              <p class="mt-5 max-w-[330px] text-sm leading-7 text-white/75">
+                CIDEPAC también cuenta con estudiantes colaboradores que
+                apoyan el desarrollo de sus iniciativas y participan en
+                distintos espacios de nuestra comunidad.
+              </p>
+            </div>
+
+            <div
+              class="relative z-10 mt-10 border-t border-white/15 pt-5"
+            >
+              <p
+                class="text-[0.65rem] font-extrabold uppercase tracking-[0.14em] text-white/55"
+              >
+                Apoyo a nuestra comunidad
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CÓMO SE ARTICULA -->
+    <section
+      class="border-t border-[#eaded9] bg-white py-20 lg:py-24"
+    >
+      <div class="site-container">
+        <div
+          class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start"
+        >
+          <!-- Texto -->
+          <div>
+            <div class="mb-6 flex items-center gap-4">
+              <span class="font-display text-xl text-cidepac-700">
+                02
+              </span>
+
+              <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+              <span
+                class="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-700"
+              >
+                Organización
+              </span>
+            </div>
+
+            <h2
+              class="display-title max-w-[500px] text-[3rem] leading-[0.95] text-neutral-950 sm:text-[3.8rem]"
+            >
+              Una estructura
+              <span class="text-cidepac-700">
+                que conecta.
+              </span>
+            </h2>
+
+            <p
+              class="mt-7 max-w-[520px] text-base leading-8 text-neutral-600"
+            >
+              Las distintas áreas trabajan de manera articulada para convertir
+              ideas en actividades, espacios académicos, publicaciones y
+              experiencias para nuestra comunidad universitaria.
+            </p>
+          </div>
+
+          <!-- Diagrama -->
+          <div class="relative">
+            <div
+              class="border border-[#eaded9] bg-[#faf6f3] p-6 sm:p-8"
+            >
+
+              <!-- Junta -->
+              <div
+                class="mx-auto max-w-[420px] border border-cidepac-700 bg-white p-6 text-center"
+              >
+                <p
+                  class="text-[0.65rem] font-extrabold uppercase tracking-[0.15em] text-cidepac-700"
+                >
+                  Dirección
+                </p>
+
+                <p
+                  class="display-title mt-2 text-[1.8rem] text-neutral-950"
+                >
+                  Junta Directiva
+                </p>
+              </div>
+
+              <!-- Línea -->
+              <div
+                class="mx-auto h-10 w-px bg-cidepac-700/35"
+                aria-hidden="true"
+              ></div>
+
+              <!-- Comisiones -->
+              <div class="grid gap-3 sm:grid-cols-2">
+                <div
+                  class="border border-[#eaded9] bg-white p-5 text-center transition duration-200 hover:border-cidepac-700/30 hover:bg-[#fffdfb]"
+                >
+                  <p class="font-bold text-neutral-800">
+                    Investigación Académica
+                  </p>
+                </div>
+
+                <div
+                  class="border border-[#eaded9] bg-white p-5 text-center transition duration-200 hover:border-cidepac-700/30 hover:bg-[#fffdfb]"
+                >
+                  <p class="font-bold text-neutral-800">
+                    Medios y Diseño Digital
+                  </p>
+                </div>
+
+                <div
+                  class="border border-[#eaded9] bg-white p-5 text-center transition duration-200 hover:border-cidepac-700/30 hover:bg-[#fffdfb]"
+                >
+                  <p class="font-bold text-neutral-800">
+                    Logística y Economía
+                  </p>
+                </div>
+
+                <div
+                  class="border border-[#eaded9] bg-white p-5 text-center transition duration-200 hover:border-cidepac-700/30 hover:bg-[#fffdfb]"
+                >
+                  <p class="font-bold text-neutral-800">
+                    Talento y Relaciones Institucionales
+                  </p>
+                </div>
+              </div>
+
+              <!-- Línea -->
+              <div
+                class="mx-auto h-10 w-px bg-cidepac-700/35"
+                aria-hidden="true"
+              ></div>
+
+              <!-- Comunidad -->
+              <div
+                class="mx-auto max-w-[420px] bg-[#171111] p-5 text-center text-white"
+              >
+                <p
+                  class="text-[0.65rem] font-extrabold uppercase tracking-[0.15em] text-white/50"
+                >
+                  Comunidad
+                </p>
+
+                <p class="mt-2 font-bold">
+                  Colaboradores
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERSONAS -->
+    <section
+      class="border-t border-[#eaded9] bg-[#faf6f3] py-20 lg:py-24"
+    >
+      <div class="site-container">
+        <div
+          class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center"
+        >
+          <div>
+            <div class="mb-6 flex items-center gap-4">
+              <span class="font-display text-xl text-cidepac-700">
+                03
+              </span>
+
+              <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+              <span
+                class="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-700"
+              >
+                Nuestra comunidad
+              </span>
+            </div>
+
+            <h2
+              class="display-title max-w-[570px] text-[3rem] leading-[0.95] text-neutral-950 sm:text-[3.8rem]"
+            >
+              Las personas detrás
+              <span class="text-cidepac-700">
+                de CIDEPAC.
+              </span>
+            </h2>
+          </div>
+
+          <div>
+            <p
+              class="max-w-[650px] text-base leading-8 text-neutral-600"
+            >
+              Nuestra comunidad está formada por estudiantes que aportan desde
+              distintas áreas, experiencias y perspectivas al desarrollo de
+              CIDEPAC.
+            </p>
+
+            <p
+              class="mt-5 max-w-[650px] text-sm leading-7 text-neutral-500"
+            >
+              Próximamente incorporaremos algunos perfiles institucionales
+              seleccionados para representar a las distintas áreas y
+              actividades de la organización.
+            </p>
+          </div>
+        </div>
+
+        <!-- Placeholders futuros -->
+        <div
+          class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {
+            Array.from({ length: 4 }).map(() => (
+              <div
+                class="overflow-hidden border border-[#eaded9] bg-white"
+                aria-hidden="true"
+              >
+                <div
+                  class="aspect-[4/5] bg-[linear-gradient(135deg,#f0e9e6,#e4dbd7)]"
+                >
+                  <div
+                    class="flex h-full items-center justify-center"
+                  >
+                    <svg
+                      width="48"
+                      height="48"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                      class="text-neutral-300"
+                    >
+                      <circle cx="12" cy="8" r="4"></circle>
+                      <path d="M4 21a8 8 0 0 1 16 0"></path>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="p-5">
+                  <div
+                    class="h-3 w-2/3 rounded-full bg-[#eee7e4]"
+                  ></div>
+
+                  <div
+                    class="mt-3 h-2 w-1/2 rounded-full bg-[#f3edeb]"
+                  ></div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <FinalCTA />
+  </main>
+
+  <Footer />
+</BaseLayout>

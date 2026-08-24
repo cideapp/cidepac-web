@@ -7,14 +7,23 @@ const navItems = [
   { label: "Artículos", href: "/articulos" },
   { label: "Alianzas", href: "/alianzas" },
 ];
+
+const currentPath = Astro.url.pathname;
+
+const isActive = (href: string) => {
+  if (href === "/") {
+    return currentPath === "/";
+  }
+
+  return currentPath === href || currentPath.startsWith(`${href}/`);
+};
 ---
 
 <header
   class="sticky top-0 z-50 border-b border-[#eaded9]/80 bg-[#fffdfb]/95 backdrop-blur-lg"
 >
-  <div
-    class="site-container flex h-[78px] items-center justify-between gap-8"
-  >
+  <div class="site-container flex h-[78px] items-center justify-between gap-8">
+
     <!-- Marca -->
     <a
       href="/"
@@ -50,14 +59,32 @@ const navItems = [
       aria-label="Navegación principal"
     >
       {
-        navItems.map((item) => (
-          <a
-            href={item.href}
-            class="focus-ring relative rounded-sm py-2 text-sm font-semibold text-neutral-700 transition-colors duration-200 hover:text-cidepac-700"
-          >
-            {item.label}
-          </a>
-        ))
+        navItems.map((item) => {
+          const active = isActive(item.href);
+
+          return (
+            <a
+              href={item.href}
+              aria-current={active ? "page" : undefined}
+              class:list={[
+                "focus-ring relative rounded-sm py-2 text-sm font-semibold transition-colors duration-200",
+                active
+                  ? "text-cidepac-700"
+                  : "text-neutral-700 hover:text-cidepac-700",
+              ]}
+            >
+              {item.label}
+
+              <span
+                class:list={[
+                  "absolute -bottom-[3px] left-0 h-[2px] bg-cidepac-700 transition-all duration-200",
+                  active ? "w-full" : "w-0",
+                ]}
+                aria-hidden="true"
+              />
+            </a>
+          );
+        })
       }
     </nav>
 
@@ -70,7 +97,7 @@ const navItems = [
       </a>
     </div>
 
-    <!-- Mobile button -->
+    <!-- Mobile -->
     <button
       type="button"
       class="focus-ring grid size-11 place-items-center rounded-md text-cidepac-900 lg:hidden"
@@ -96,7 +123,7 @@ const navItems = [
     </button>
   </div>
 
-  <!-- Mobile menu -->
+  <!-- Menú móvil -->
   <div
     id="mobile-menu"
     class="hidden border-t border-[#eaded9] bg-[#fffdfb] lg:hidden"
@@ -107,14 +134,33 @@ const navItems = [
       aria-label="Navegación móvil"
     >
       {
-        navItems.map((item) => (
-          <a
-            href={item.href}
-            class="border-b border-[#efe6e2] py-4 text-base font-semibold text-neutral-800 transition hover:text-cidepac-700"
-          >
-            {item.label}
-          </a>
-        ))
+        navItems.map((item) => {
+          const active = isActive(item.href);
+
+          return (
+            <a
+              href={item.href}
+              aria-current={active ? "page" : undefined}
+              class:list={[
+                "border-b border-[#efe6e2] py-4 text-base font-semibold transition",
+                active
+                  ? "text-cidepac-700"
+                  : "text-neutral-800 hover:text-cidepac-700",
+              ]}
+            >
+              <span class="flex items-center justify-between">
+                {item.label}
+
+                {active && (
+                  <span
+                    class="size-2 rounded-full bg-cidepac-orange"
+                    aria-hidden="true"
+                  />
+                )}
+              </span>
+            </a>
+          );
+        })
       }
 
       <a

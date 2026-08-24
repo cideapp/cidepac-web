@@ -1,0 +1,85 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  accent?: string;
+  description: string;
+  number?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  accent,
+  description,
+  number = "01",
+} = Astro.props;
+---
+
+<section
+  class="relative overflow-hidden border-b border-[#eaded9] bg-[#faf6f3]"
+>
+  <!-- Elementos decorativos -->
+  <div
+    class="pointer-events-none absolute -right-28 -top-28 size-[360px] rounded-full border-[70px] border-cidepac-700/5"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="pointer-events-none absolute right-[15%] top-[22%] size-20 bg-cidepac-orange/10"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="site-container relative z-10 grid min-h-[520px] items-end gap-12 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:py-20"
+  >
+    <div>
+      <div class="mb-7 flex items-center gap-4">
+        <span class="font-display text-xl text-cidepac-700">
+          {number}
+        </span>
+
+        <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+        <span
+          class="text-xs font-extrabold uppercase tracking-[0.17em] text-neutral-700"
+        >
+          {eyebrow}
+        </span>
+      </div>
+
+      <h1
+        class="display-title max-w-[820px] text-[3.5rem] leading-[0.91] text-neutral-950 sm:text-[4.5rem] lg:text-[5.4rem]"
+      >
+        {title}
+
+        {
+          accent && (
+            <>
+              <br />
+              <span class="text-cidepac-700">{accent}</span>
+            </>
+          )
+        }
+      </h1>
+    </div>
+
+    <div class="lg:pb-2">
+      <p
+        class="max-w-[550px] text-base leading-8 text-neutral-600 lg:ml-auto lg:text-[1.05rem]"
+      >
+        {description}
+      </p>
+
+      <div class="mt-8 flex items-center gap-4 lg:justify-end">
+        <span class="h-px w-14 bg-cidepac-orange"></span>
+
+        <span
+          class="text-[0.68rem] font-extrabold uppercase tracking-[0.17em] text-cidepac-700"
+        >
+          Universidad Nacional de Trujillo
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
