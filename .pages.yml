@@ -1,0 +1,103 @@
+media:
+  - name: article_images
+    label: Imágenes de artículos
+    input: public/images/articles
+    output: /images/articles
+    categories: [image]
+    extensions: [jpg, jpeg, png, webp, avif]
+    rename: safe
+
+content:
+  - name: articles
+    label: Artículos
+    type: collection
+    path: src/content/articles
+    format: yaml-frontmatter
+    filename: "{title}.md"
+    operations:
+      create: true
+      rename: true
+      delete: false
+    view:
+      fields: [title, author, type, publishedAt, draft]
+      primary: title
+      sort: [publishedAt, title]
+      default:
+        sort: publishedAt
+        order: desc
+    fields:
+      - name: title
+        label: Título
+        type: string
+        required: true
+
+      - name: author
+        label: Autor
+        type: string
+        required: true
+
+      - name: type
+        label: Tipo de publicación
+        type: select
+        required: true
+        options:
+          values:
+            - Artículo
+            - Reseña
+
+      - name: publishedAt
+        label: Fecha de publicación
+        type: date
+        options:
+          format: yyyy-MM-dd
+
+      - name: summary
+        label: Resumen
+        type: text
+        description: "Resumen breve utilizado en listados y metadatos de la publicación."
+
+      - name: image
+        label: Imagen de portada
+        type: image
+        options:
+          media: article_images
+          path: public/images/articles
+          categories: [image]
+          extensions: [jpg, jpeg, png, webp, avif]
+          rename: safe
+
+      - name: featured
+        label: Publicación destacada
+        type: boolean
+        default: false
+
+      - name: draft
+        label: Borrador
+        type: boolean
+        default: false
+
+      - name: externalUrl
+        label: Fuente externa
+        type: string
+        description: "Enlace original de Instagram, Google Docs, prensa u otra fuente cuando corresponda."
+
+      - name: source
+        label: Nombre de la fuente
+        type: string
+        description: "Ejemplos: Instagram, Google Docs, La Industria."
+
+      - name: body
+        label: Contenido
+        type: rich-text
+        options:
+          format: markdown
+          media: article_images
+          path: public/images/articles
+          categories: [image]
+          extensions: [jpg, jpeg, png, webp, avif]
+          rename: safe
+          switcher: true
+
+settings:
+  content:
+    merge: true
