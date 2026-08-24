@@ -1,0 +1,321 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import Header from "../components/Header.astro";
+import PageHero from "../components/PageHero.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import FinalCTA from "../components/FinalCTA.astro";
+import Footer from "../components/Footer.astro";
+
+import { articles } from "../data/articles";
+
+const featuredArticle =
+  articles.find((article) => article.featured) ?? articles[0];
+
+const remainingArticles =
+  articles.filter((article) => article.id !== featuredArticle.id);
+
+const articlesCount =
+  articles.filter((article) => article.type === "Artículo").length;
+
+const reviewsCount =
+  articles.filter((article) => article.type === "Reseña").length;
+---
+
+<BaseLayout
+  title="Artículos | CIDEPAC"
+  description="Explora artículos, reseñas y producción académica desarrollada por integrantes de CIDEPAC."
+>
+  <Header />
+
+  <main>
+
+    <!-- HERO -->
+    <PageHero
+      number="04"
+      eyebrow="Artículos"
+      title="Ideas que merecen"
+      accent="ser discutidas."
+      description="Un espacio para reunir las reflexiones, artículos, reseñas y producción académica desarrollada por integrantes de nuestra comunidad."
+    />
+
+    <!-- INTRO -->
+    <section class="bg-white py-20 lg:py-24">
+      <div
+        class="site-container grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24"
+      >
+        <div>
+          <p
+            class="text-xs font-extrabold uppercase tracking-[0.17em] text-cidepac-700"
+          >
+            Perspectivas CIDEPAC
+          </p>
+
+          <h2
+            class="display-title mt-5 text-[3rem] leading-[0.95] text-neutral-950 sm:text-[3.7rem]"
+          >
+            Leer también es
+            <span class="text-cidepac-700">
+              participar.
+            </span>
+          </h2>
+        </div>
+
+        <div>
+          <p class="max-w-[700px] text-lg leading-9 text-neutral-700">
+            Este espacio reúne la producción académica registrada por CIDEPAC
+            y busca fortalecer la publicación de ideas, análisis y reflexiones
+            desarrolladas por sus integrantes.
+          </p>
+
+          <div
+            class="mt-10 grid gap-px overflow-hidden border border-[#eaded9] bg-[#eaded9] sm:grid-cols-3"
+          >
+            <div class="bg-[#faf6f3] p-6">
+              <p class="display-title text-[2rem] text-cidepac-700">
+                {articles.length}
+              </p>
+
+              <p class="mt-2 text-xs font-semibold text-neutral-500">
+                Producciones registradas
+              </p>
+            </div>
+
+            <div class="bg-[#faf6f3] p-6">
+              <p class="display-title text-[2rem] text-cidepac-700">
+                {articlesCount}
+              </p>
+
+              <p class="mt-2 text-xs font-semibold text-neutral-500">
+                Artículos
+              </p>
+            </div>
+
+            <div class="bg-[#faf6f3] p-6">
+              <p class="display-title text-[2rem] text-cidepac-700">
+                {reviewsCount}
+              </p>
+
+              <p class="mt-2 text-xs font-semibold text-neutral-500">
+                Reseña registrada
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESTACADO -->
+    <section
+      class="border-t border-[#eaded9] bg-[#faf6f3] py-20 lg:py-24"
+    >
+      <div class="site-container">
+        <div class="mb-10 flex items-center gap-4">
+          <span class="font-display text-xl text-cidepac-700">
+            01
+          </span>
+
+          <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+          <span
+            class="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-700"
+          >
+            Lectura destacada
+          </span>
+        </div>
+
+        <a
+          href={featuredArticle.externalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="focus-ring group grid overflow-hidden border border-[#e5d8d3] bg-white lg:grid-cols-[1.05fr_0.95fr]"
+        >
+          <!-- Imagen -->
+          <div
+            class="relative min-h-[360px] overflow-hidden bg-[#eee8e5] lg:min-h-[510px]"
+          >
+            {
+              featuredArticle.image ? (
+                <img
+                  src={featuredArticle.image}
+                  alt={`Portada del artículo ${featuredArticle.title}`}
+                  loading="lazy"
+                  class="absolute inset-0 h-full w-full object-cover"
+                />
+              ) : (
+                <div class="absolute inset-0 grid place-items-center bg-[linear-gradient(135deg,#f3edeb,#e4dad6)]">
+                  <div class="text-center text-neutral-300">
+                    <svg
+                      class="mx-auto"
+                      width="58"
+                      height="58"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.3"
+                      aria-hidden="true"
+                    >
+                      <path d="M4 4h16v16H4z"></path>
+                      <path d="M8 8h8"></path>
+                      <path d="M8 12h8"></path>
+                      <path d="M8 16h5"></path>
+                    </svg>
+
+                    <p class="mt-4 text-[0.65rem] font-extrabold uppercase tracking-[0.18em]">
+                      Portada del artículo
+                    </p>
+                  </div>
+                </div>
+              )
+            }
+
+            <span
+              class="absolute left-6 top-6 rounded-full bg-cidepac-700 px-4 py-2 text-[0.65rem] font-extrabold uppercase tracking-[0.14em] text-white"
+            >
+              Destacado
+            </span>
+
+            <div
+              class="absolute bottom-0 right-0 h-28 w-28 bg-cidepac-orange"
+              aria-hidden="true"
+            ></div>
+          </div>
+
+          <!-- Texto -->
+          <div class="flex flex-col justify-between p-8 sm:p-10 lg:p-14">
+            <div>
+              <p
+                class="text-xs font-extrabold uppercase tracking-[0.16em] text-cidepac-700"
+              >
+                {featuredArticle.type}
+              </p>
+
+              <h2
+                class="display-title mt-5 text-[3rem] leading-[0.95] text-neutral-950 transition-colors group-hover:text-cidepac-700 sm:text-[3.6rem]"
+              >
+                {featuredArticle.title}
+              </h2>
+            </div>
+
+            <div class="mt-12">
+              <div class="border-y border-[#eaded9] py-6">
+                <p
+                  class="text-[0.65rem] font-extrabold uppercase tracking-[0.14em] text-neutral-400"
+                >
+                  Autor
+                </p>
+
+                <p class="mt-2 text-sm font-bold text-neutral-800">
+                  {featuredArticle.author}
+                </p>
+              </div>
+
+              <div
+                class="mt-7 inline-flex items-center gap-3 text-sm font-extrabold text-cidepac-700"
+              >
+                Leer publicación original
+                <span aria-hidden="true">↗</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- TODOS LOS ARTÍCULOS -->
+    <section class="border-t border-[#eaded9] bg-white py-20 lg:py-24">
+      <div class="site-container">
+
+        <div
+          class="mb-12 flex flex-col justify-between gap-7 md:flex-row md:items-end"
+        >
+          <div>
+            <div class="mb-6 flex items-center gap-4">
+              <span class="font-display text-xl text-cidepac-700">
+                02
+              </span>
+
+              <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+              <span
+                class="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-700"
+              >
+                Publicaciones
+              </span>
+            </div>
+
+            <h2
+              class="display-title max-w-[720px] text-[3rem] leading-[0.95] text-neutral-950 sm:text-[3.8rem]"
+            >
+              Más voces.
+              <span class="text-cidepac-700">
+                Más perspectivas.
+              </span>
+            </h2>
+          </div>
+
+          <p class="max-w-[430px] text-sm leading-7 text-neutral-500">
+            Explora la producción académica registrada hasta el momento por
+            CIDEPAC.
+          </p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {
+            remainingArticles.map((article) => (
+              <ArticleCard article={article} />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- FUTURO EDITORIAL -->
+    <section
+      class="border-t border-[#eaded9] bg-[#faf6f3] py-20 lg:py-24"
+    >
+      <div
+        class="site-container grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center"
+      >
+        <div>
+          <p
+            class="text-xs font-extrabold uppercase tracking-[0.17em] text-cidepac-700"
+          >
+            Producción académica
+          </p>
+
+          <h2
+            class="display-title mt-5 max-w-[600px] text-[3rem] leading-[0.95] text-neutral-950 sm:text-[3.8rem]"
+          >
+            Un espacio editorial
+            <span class="text-cidepac-700">
+              que recién comienza.
+            </span>
+          </h2>
+        </div>
+
+        <div>
+          <p class="max-w-[650px] text-base leading-8 text-neutral-600">
+            La producción académica forma parte de las líneas de trabajo de
+            CIDEPAC. La web permitirá que nuevas publicaciones puedan reunirse
+            en un espacio propio y sean más fáciles de consultar y compartir.
+          </p>
+
+          <div
+            class="mt-7 border-l-4 border-cidepac-orange pl-5"
+          >
+            <p class="text-sm leading-7 text-neutral-500">
+              Próximamente los artículos podrán leerse directamente dentro de
+              esta página, con portada, autoría, contenido, referencias y
+              publicaciones relacionadas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <FinalCTA />
+  </main>
+
+  <Footer />
+</BaseLayout>

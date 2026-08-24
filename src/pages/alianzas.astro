@@ -1,0 +1,430 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import Header from "../components/Header.astro";
+import PageHero from "../components/PageHero.astro";
+import AllianceCard from "../components/AllianceCard.astro";
+import FinalCTA from "../components/FinalCTA.astro";
+import Footer from "../components/Footer.astro";
+
+import { alliances } from "../data/alliances";
+
+const untAlliances = alliances.filter(
+  (alliance) => alliance.scope === "UNT"
+);
+
+const externalAlliances = alliances.filter(
+  (alliance) => alliance.scope === "Interuniversitaria"
+);
+
+const universities = [
+  "UNT",
+  "UNMSM",
+  "UCSM",
+  "UARM",
+  "UPAO",
+  "UCSUR",
+];
+---
+
+<BaseLayout
+  title="Alianzas | CIDEPAC"
+  description="Conoce las organizaciones e instituciones con las que CIDEPAC ha construido espacios de cooperación académica y estudiantil."
+>
+  <Header />
+
+  <main>
+
+    <!-- HERO -->
+    <PageHero
+      number="05"
+      eyebrow="Alianzas"
+      title="El conocimiento también"
+      accent="se construye juntos."
+      description="CIDEPAC articula espacios de cooperación con organizaciones estudiantiles e instituciones académicas dentro y fuera de la Universidad Nacional de Trujillo."
+    />
+
+    <!-- INTRO -->
+    <section class="bg-white py-20 lg:py-24">
+      <div
+        class="site-container grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24"
+      >
+        <div>
+          <p
+            class="text-xs font-extrabold uppercase tracking-[0.17em] text-cidepac-700"
+          >
+            Cooperación
+          </p>
+
+          <h2
+            class="display-title mt-5 text-[3rem] leading-[0.95] text-neutral-950 sm:text-[3.7rem]"
+          >
+            Crear redes para
+            <span class="text-cidepac-700">
+              ampliar perspectivas.
+            </span>
+          </h2>
+        </div>
+
+        <div class="max-w-[720px]">
+          <p class="text-lg leading-9 text-neutral-700">
+            La colaboración con otros espacios académicos permite intercambiar
+            experiencias, desarrollar actividades conjuntas y fortalecer la
+            presencia de CIDEPAC dentro de la comunidad universitaria.
+          </p>
+
+          <div
+            class="mt-10 grid gap-px overflow-hidden border border-[#eaded9] bg-[#eaded9] sm:grid-cols-3"
+          >
+            <div class="bg-[#faf6f3] p-6">
+              <p
+                class="display-title text-[2rem] leading-none text-cidepac-700"
+              >
+                {alliances.length}
+              </p>
+
+              <p class="mt-3 text-xs font-semibold text-neutral-500">
+                Espacios de cooperación
+              </p>
+            </div>
+
+            <div class="bg-[#faf6f3] p-6">
+              <p
+                class="display-title text-[2rem] leading-none text-cidepac-700"
+              >
+                {untAlliances.length}
+              </p>
+
+              <p class="mt-3 text-xs font-semibold text-neutral-500">
+                Alianzas dentro de la UNT
+              </p>
+            </div>
+
+            <div class="bg-[#faf6f3] p-6">
+              <p
+                class="display-title text-[2rem] leading-none text-cidepac-700"
+              >
+                {externalAlliances.length}
+              </p>
+
+              <p class="mt-3 text-xs font-semibold text-neutral-500">
+                Articulaciones interuniversitarias
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RED UNIVERSITARIA -->
+    <section
+      class="border-t border-[#eaded9] bg-cidepac-700 py-16 text-white lg:py-20"
+    >
+      <div class="site-container">
+        <div
+          class="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-center"
+        >
+          <div>
+            <p
+              class="text-xs font-extrabold uppercase tracking-[0.17em] text-cidepac-orange"
+            >
+              Nuestra red
+            </p>
+
+            <h2
+              class="display-title mt-4 text-[2.8rem] leading-[0.95] text-white sm:text-[3.5rem]"
+            >
+              De Trujillo
+              <span class="text-cidepac-orange">
+                hacia otras universidades.
+              </span>
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-2 gap-px bg-white/15 sm:grid-cols-3">
+            {
+              universities.map((university) => (
+                <div
+                  class="grid min-h-[110px] place-items-center bg-cidepac-700 px-5 text-center transition duration-200 hover:bg-cidepac-900"
+                >
+                  <span
+                    class="display-title text-[1.8rem] tracking-wide text-white"
+                  >
+                    {university}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALIANZAS UNT -->
+    <section
+      class="border-t border-[#eaded9] bg-[#faf6f3] py-20 lg:py-24"
+    >
+      <div class="site-container">
+        <div
+          class="mb-12 flex flex-col justify-between gap-7 md:flex-row md:items-end"
+        >
+          <div>
+            <div class="mb-6 flex items-center gap-4">
+              <span class="font-display text-xl text-cidepac-700">
+                01
+              </span>
+
+              <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+              <span
+                class="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-700"
+              >
+                Comunidad UNT
+              </span>
+            </div>
+
+            <h2
+              class="display-title max-w-[740px] text-[3rem] leading-[0.95] text-neutral-950 sm:text-[3.8rem]"
+            >
+              Cooperación dentro
+              <span class="text-cidepac-700">
+                de nuestra universidad.
+              </span>
+            </h2>
+          </div>
+
+          <p class="max-w-[430px] text-sm leading-7 text-neutral-500">
+            Espacios con los que CIDEPAC ha desarrollado articulación,
+            cooperación e intercambio dentro de la Universidad Nacional de
+            Trujillo.
+          </p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {
+            untAlliances.map((alliance) => (
+              <AllianceCard alliance={alliance} />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ALIANZAS EXTERNAS -->
+    <section
+      class="border-t border-[#eaded9] bg-white py-20 lg:py-24"
+    >
+      <div class="site-container">
+        <div
+          class="mb-12 flex flex-col justify-between gap-7 md:flex-row md:items-end"
+        >
+          <div>
+            <div class="mb-6 flex items-center gap-4">
+              <span class="font-display text-xl text-cidepac-700">
+                02
+              </span>
+
+              <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+              <span
+                class="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-700"
+              >
+                Red interuniversitaria
+              </span>
+            </div>
+
+            <h2
+              class="display-title max-w-[760px] text-[3rem] leading-[0.95] text-neutral-950 sm:text-[3.8rem]"
+            >
+              Conectar también es
+              <span class="text-cidepac-700">
+                aprender.
+              </span>
+            </h2>
+          </div>
+
+          <p class="max-w-[450px] text-sm leading-7 text-neutral-500">
+            La cooperación interuniversitaria amplía los espacios para
+            compartir experiencias y desarrollar nuevas iniciativas.
+          </p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {
+            externalAlliances.map((alliance) => (
+              <AllianceCard alliance={alliance} />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- CÓMO COOPERAMOS -->
+    <section
+      class="border-t border-[#eaded9] bg-[#faf6f3] py-20 lg:py-24"
+    >
+      <div class="site-container">
+        <div class="mb-12">
+          <div class="mb-6 flex items-center gap-4">
+            <span class="font-display text-xl text-cidepac-700">
+              03
+            </span>
+
+            <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+            <span
+              class="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-700"
+            >
+              Formas de cooperación
+            </span>
+          </div>
+
+          <h2
+            class="display-title max-w-[780px] text-[3rem] leading-[0.95] text-neutral-950 sm:text-[3.8rem]"
+          >
+            Diferentes formas
+            <span class="text-cidepac-700">
+              de construir juntos.
+            </span>
+          </h2>
+        </div>
+
+        <div
+          class="grid gap-px overflow-hidden border border-[#eaded9] bg-[#eaded9] md:grid-cols-2 lg:grid-cols-4"
+        >
+          <!-- Académica -->
+          <article class="bg-white p-8">
+            <span
+              class="display-title text-[2rem] text-cidepac-700"
+              aria-hidden="true"
+            >
+              01
+            </span>
+
+            <h3
+              class="display-title mt-6 text-[1.7rem] text-neutral-950"
+            >
+              Académica
+            </h3>
+
+            <p class="mt-4 text-sm leading-6 text-neutral-600">
+              Actividades, eventos e intercambio de conocimientos vinculados
+              con los ejes de CIDEPAC.
+            </p>
+          </article>
+
+          <!-- Difusión -->
+          <article class="bg-white p-8">
+            <span
+              class="display-title text-[2rem] text-cidepac-700"
+              aria-hidden="true"
+            >
+              02
+            </span>
+
+            <h3
+              class="display-title mt-6 text-[1.7rem] text-neutral-950"
+            >
+              Difusión
+            </h3>
+
+            <p class="mt-4 text-sm leading-6 text-neutral-600">
+              Colaboración para ampliar el alcance de iniciativas,
+              publicaciones y actividades.
+            </p>
+          </article>
+
+          <!-- Eventos -->
+          <article class="bg-white p-8">
+            <span
+              class="display-title text-[2rem] text-cidepac-700"
+              aria-hidden="true"
+            >
+              03
+            </span>
+
+            <h3
+              class="display-title mt-6 text-[1.7rem] text-neutral-950"
+            >
+              Eventos
+            </h3>
+
+            <p class="mt-4 text-sm leading-6 text-neutral-600">
+              Creación y coorganización de actividades junto con otros
+              espacios estudiantiles.
+            </p>
+          </article>
+
+          <!-- Intercambio -->
+          <article class="bg-white p-8">
+            <span
+              class="display-title text-[2rem] text-cidepac-700"
+              aria-hidden="true"
+            >
+              04
+            </span>
+
+            <h3
+              class="display-title mt-6 text-[1.7rem] text-neutral-950"
+            >
+              Intercambio
+            </h3>
+
+            <p class="mt-4 text-sm leading-6 text-neutral-600">
+              Aprendizaje mutuo, asesoría y construcción de nuevas redes de
+              colaboración universitaria.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FUTURO -->
+    <section
+      class="border-t border-[#eaded9] bg-white py-20 lg:py-24"
+    >
+      <div
+        class="site-container grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center"
+      >
+        <div>
+          <p
+            class="text-xs font-extrabold uppercase tracking-[0.17em] text-cidepac-700"
+          >
+            Seguimos conectando
+          </p>
+
+          <h2
+            class="display-title mt-5 max-w-[600px] text-[3rem] leading-[0.95] text-neutral-950 sm:text-[3.8rem]"
+          >
+            Una red que puede
+            <span class="text-cidepac-700">
+              seguir creciendo.
+            </span>
+          </h2>
+        </div>
+
+        <div>
+          <p class="max-w-[650px] text-base leading-8 text-neutral-600">
+            El fortalecimiento de nuevas alianzas forma parte de las líneas de
+            desarrollo institucional planteadas por CIDEPAC para ampliar sus
+            espacios académicos y de cooperación.
+          </p>
+
+          <div
+            class="mt-7 border-l-4 border-cidepac-orange pl-5"
+          >
+            <p class="text-sm leading-7 text-neutral-500">
+              Cuando dispongamos de los logotipos oficiales de las
+              organizaciones aliadas, podremos incorporarlos a esta sección
+              sin modificar la estructura de la página.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <FinalCTA />
+  </main>
+
+  <Footer />
+</BaseLayout>

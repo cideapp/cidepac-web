@@ -1,0 +1,102 @@
+---
+import type { Alliance } from "../data/alliances";
+
+interface Props {
+  alliance: Alliance;
+}
+
+const { alliance } = Astro.props;
+---
+
+<article
+  class="group flex min-h-[360px] flex-col justify-between border border-[#eaded9] bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-cidepac-700/30 hover:shadow-[0_20px_50px_rgba(122,0,0,0.07)] sm:p-8"
+>
+  <div>
+    <div class="flex items-start justify-between gap-5">
+      {
+        alliance.image ? (
+          <div class="size-16 overflow-hidden rounded-lg border border-cidepac-700/20 bg-[#faf6f3]">
+            <img
+              src={alliance.image}
+              alt={`Imagen de la alianza CIDEPAC con ${alliance.acronym}`}
+              loading="lazy"
+              class="h-full w-full object-cover"
+            />
+          </div>
+        ) : (
+          <div
+            class="grid size-14 place-items-center rounded-full border border-cidepac-700/20 bg-[#faf6f3] text-cidepac-700 transition duration-300 group-hover:border-cidepac-700 group-hover:bg-cidepac-700 group-hover:text-white"
+            aria-hidden="true"
+          >
+            <svg
+              width="25"
+              height="25"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M8 12h8"></path>
+              <path d="m12 8 4 4-4 4"></path>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="12" r="3"></circle>
+            </svg>
+          </div>
+        )
+      }
+
+      <span
+        class:list={[
+          "rounded-full px-3 py-1.5 text-[0.6rem] font-extrabold uppercase tracking-[0.12em]",
+          alliance.scope === "UNT"
+            ? "bg-cidepac-700 text-white"
+            : "bg-[#f7ebe7] text-cidepac-700",
+        ]}
+      >
+        {alliance.scope}
+      </span>
+    </div>
+
+    <p
+      class="display-title mt-9 text-[2rem] leading-none text-cidepac-700"
+    >
+      {alliance.acronym}
+    </p>
+
+    <h2
+      class="mt-3 text-base font-extrabold leading-6 text-neutral-950"
+    >
+      {alliance.name}
+    </h2>
+
+    <p class="mt-3 text-xs leading-5 text-neutral-500">
+      {alliance.institution}
+    </p>
+
+    <div class="mt-7">
+      <p
+        class="text-[0.62rem] font-extrabold uppercase tracking-[0.14em] text-neutral-400"
+      >
+        Tipo de cooperación
+      </p>
+
+      <p class="mt-2 text-sm font-bold leading-6 text-neutral-700">
+        {alliance.support}
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-8 border-t border-[#eaded9] pt-5">
+    <p
+      class="text-[0.62rem] font-extrabold uppercase tracking-[0.14em] text-cidepac-700"
+    >
+      Trabajo desarrollado
+    </p>
+
+    <p class="mt-3 text-sm leading-6 text-neutral-600">
+      {alliance.result}
+    </p>
+  </div>
+</article>

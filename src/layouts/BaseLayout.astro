@@ -4,13 +4,17 @@ import "../styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
 
 const {
   title = "CIDEPAC",
   description =
     "Círculo de Estudios en Democracia, Partidos Políticos y Cultura Política de la Universidad Nacional de Trujillo.",
+  image,
 } = Astro.props;
+
+const ogImage = image && Astro.site ? new URL(image, Astro.site).toString() : image;
 ---
 
 <!doctype html>
@@ -24,6 +28,10 @@ const {
     />
 
     <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
 
     <meta name="theme-color" content="#bb080c" />
 

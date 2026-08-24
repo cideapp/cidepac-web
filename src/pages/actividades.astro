@@ -1,0 +1,321 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import Header from "../components/Header.astro";
+import PageHero from "../components/PageHero.astro";
+import ActivityCard from "../components/ActivityCard.astro";
+import FinalCTA from "../components/FinalCTA.astro";
+import Footer from "../components/Footer.astro";
+
+import { activities } from "../data/activities";
+
+const featuredActivity =
+  activities.find((activity) => activity.featured) ?? activities[0];
+
+const activities2026 = activities
+  .filter((activity) => activity.year === 2026)
+  .reverse();
+
+const activities2025 = activities
+  .filter((activity) => activity.year === 2025)
+  .reverse();
+---
+
+<BaseLayout
+  title="Actividades | CIDEPAC"
+  description="Conoce las actividades académicas, institucionales y de participación desarrolladas por CIDEPAC."
+>
+  <Header />
+
+  <main>
+    <!-- HERO -->
+    <PageHero
+      number="03"
+      eyebrow="Actividades"
+      title="Ideas que salen"
+      accent="del aula."
+      description="Talleres, debates, tertulias, encuentros y actividades de participación que convierten la reflexión académica en experiencias para nuestra comunidad."
+    />
+
+    <!-- INTRO -->
+    <section class="bg-white py-20 lg:py-24">
+      <div
+        class="site-container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end"
+      >
+        <div>
+          <p
+            class="text-xs font-extrabold uppercase tracking-[0.17em] text-cidepac-700"
+          >
+            Lo que hacemos
+          </p>
+
+          <h2
+            class="display-title mt-5 text-[3rem] leading-[0.95] text-neutral-950 sm:text-[3.7rem]"
+          >
+            Aprender también es
+            <span class="text-cidepac-700">
+              participar.
+            </span>
+          </h2>
+        </div>
+
+        <div class="lg:justify-self-end">
+          <p class="max-w-[650px] text-base leading-8 text-neutral-600">
+            Desde su fundación, CIDEPAC ha desarrollado espacios académicos,
+            institucionales, ciudadanos y de integración dirigidos tanto a
+            sus integrantes como a la comunidad universitaria y al público
+            interesado.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#2026"
+              class="focus-ring rounded-full border border-cidepac-700 bg-cidepac-700 px-5 py-2.5 text-xs font-extrabold text-white"
+            >
+              2026
+            </a>
+
+            <a
+              href="#2025"
+              class="focus-ring rounded-full border border-[#d8cbc7] px-5 py-2.5 text-xs font-extrabold text-neutral-700 transition hover:border-cidepac-700 hover:text-cidepac-700"
+            >
+              2025
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACTIVIDAD DESTACADA -->
+    <section
+      class="border-t border-[#eaded9] bg-[#faf6f3] py-20 lg:py-24"
+    >
+      <div class="site-container">
+        <div class="mb-10 flex items-center gap-4">
+          <span class="font-display text-xl text-cidepac-700">
+            01
+          </span>
+
+          <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+          <span
+            class="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-700"
+          >
+            Actividad destacada
+          </span>
+        </div>
+
+        <a
+          href={`/actividades/${featuredActivity.slug}`}
+          class="focus-ring group grid overflow-hidden border border-[#e5d8d3] bg-white lg:grid-cols-[1.1fr_0.9fr]"
+        >
+          <!-- Imagen -->
+          <div
+            class="relative min-h-[360px] overflow-hidden bg-[#eee8e5] lg:min-h-[540px]"
+          >
+            {
+              featuredActivity.image ? (
+                <img
+                  src={featuredActivity.image}
+                  alt={`Imagen destacada de la actividad ${featuredActivity.title}`}
+                  loading="lazy"
+                  class="absolute inset-0 h-full w-full object-cover"
+                />
+              ) : (
+                <div class="absolute inset-0 grid place-items-center bg-[linear-gradient(135deg,#f3edeb,#e4dad6)]">
+                  <div class="text-center text-neutral-300">
+                    <svg
+                      class="mx-auto"
+                      width="58"
+                      height="58"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.3"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                      <circle cx="8.5" cy="9" r="1.5"></circle>
+                      <path d="m21 15-5-5L5 20"></path>
+                    </svg>
+
+                    <p class="mt-4 text-[0.65rem] font-extrabold uppercase tracking-[0.18em]">
+                      Fotografía de la actividad
+                    </p>
+                  </div>
+                </div>
+              )
+            }
+
+            <span
+              class="absolute left-6 top-6 rounded-full bg-cidepac-700 px-4 py-2 text-[0.65rem] font-extrabold uppercase tracking-[0.14em] text-white"
+            >
+              Destacada
+            </span>
+
+            <div
+              class="absolute bottom-0 right-0 size-24 bg-cidepac-orange"
+              aria-hidden="true"
+            ></div>
+          </div>
+
+          <!-- Contenido -->
+          <div class="flex flex-col justify-between p-8 sm:p-10 lg:p-14">
+            <div>
+              <p
+                class="text-xs font-extrabold uppercase tracking-[0.16em] text-cidepac-700"
+              >
+                {featuredActivity.modality}
+              </p>
+
+              <h2
+                class="display-title mt-5 text-[3rem] leading-[0.94] text-neutral-950 transition-colors group-hover:text-cidepac-700 sm:text-[3.7rem]"
+              >
+                {featuredActivity.title}
+              </h2>
+
+              <p class="mt-7 text-base leading-8 text-neutral-600">
+                {featuredActivity.description}
+              </p>
+            </div>
+
+            <div class="mt-12">
+              <div
+                class="grid gap-6 border-y border-[#eaded9] py-6 sm:grid-cols-2"
+              >
+                <div>
+                  <p
+                    class="text-[0.65rem] font-extrabold uppercase tracking-[0.14em] text-neutral-400"
+                  >
+                    Fecha
+                  </p>
+
+                  <p class="mt-2 text-sm font-bold text-neutral-800">
+                    {featuredActivity.date}
+                  </p>
+                </div>
+
+                <div>
+                  <p
+                    class="text-[0.65rem] font-extrabold uppercase tracking-[0.14em] text-neutral-400"
+                  >
+                    Lugar
+                  </p>
+
+                  <p class="mt-2 text-sm font-bold leading-6 text-neutral-800">
+                    {featuredActivity.place}
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="mt-7 inline-flex items-center gap-3 text-sm font-extrabold text-cidepac-700"
+              >
+                Conoce la actividad
+                <span aria-hidden="true">→</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 2026 -->
+    <section
+      id="2026"
+      class="scroll-mt-24 border-t border-[#eaded9] bg-white py-20 lg:py-24"
+    >
+      <div class="site-container">
+        <div
+          class="mb-12 flex flex-col justify-between gap-7 md:flex-row md:items-end"
+        >
+          <div>
+            <div class="mb-6 flex items-center gap-4">
+              <span class="font-display text-xl text-cidepac-700">
+                02
+              </span>
+
+              <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+              <span
+                class="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-700"
+              >
+                Actividades
+              </span>
+            </div>
+
+            <h2
+              class="display-title text-[3.5rem] leading-none text-neutral-950 sm:text-[4.5rem]"
+            >
+              2026
+            </h2>
+          </div>
+
+          <p class="max-w-[480px] text-sm leading-7 text-neutral-500">
+            Actividades documentadas durante el segundo año de trabajo de
+            CIDEPAC.
+          </p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {
+            activities2026.map((activity) => (
+              <ActivityCard activity={activity} />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- 2025 -->
+    <section
+      id="2025"
+      class="scroll-mt-24 border-t border-[#eaded9] bg-[#faf6f3] py-20 lg:py-24"
+    >
+      <div class="site-container">
+        <div
+          class="mb-12 flex flex-col justify-between gap-7 md:flex-row md:items-end"
+        >
+          <div>
+            <div class="mb-6 flex items-center gap-4">
+              <span class="font-display text-xl text-cidepac-700">
+                03
+              </span>
+
+              <span class="h-px w-7 bg-cidepac-700/40"></span>
+
+              <span
+                class="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-700"
+              >
+                Primer año
+              </span>
+            </div>
+
+            <h2
+              class="display-title text-[3.5rem] leading-none text-neutral-950 sm:text-[4.5rem]"
+            >
+              2025
+            </h2>
+          </div>
+
+          <p class="max-w-[480px] text-sm leading-7 text-neutral-500">
+            Desde las primeras convocatorias hasta talleres, tertulias,
+            actividades académicas y espacios de confraternidad.
+          </p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {
+            activities2025.map((activity) => (
+              <ActivityCard activity={activity} />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <FinalCTA />
+  </main>
+
+  <Footer />
+</BaseLayout>
