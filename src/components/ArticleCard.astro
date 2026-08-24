@@ -1,17 +1,17 @@
 ---
-import type { Article } from "../data/articles";
+import type { ArticleCardData } from "../lib/articles";
 
 interface Props {
-  article: Article;
+  article: ArticleCardData;
+  headingLevel?: "h2" | "h3";
 }
 
-const { article } = Astro.props;
+const { article, headingLevel = "h2" } = Astro.props;
+const Heading = headingLevel;
 ---
 
 <a
-  href={article.externalUrl}
-  target="_blank"
-  rel="noopener noreferrer"
+  href={`/articulos/${article.slug}`}
   class="focus-ring group block overflow-hidden border border-[#eaded9] bg-white transition duration-300 hover:-translate-y-1 hover:border-cidepac-700/30 hover:shadow-[0_20px_50px_rgba(122,0,0,0.07)]"
 >
   <article>
@@ -65,11 +65,11 @@ const { article } = Astro.props;
           Producción académica
         </p>
 
-        <h2
+        <Heading
           class="display-title mt-4 text-[1.75rem] leading-[1.04] text-neutral-950 transition-colors group-hover:text-cidepac-700"
         >
           {article.title}
-        </h2>
+        </Heading>
       </div>
 
       <div class="mt-8 border-t border-[#eaded9] pt-5">
@@ -81,14 +81,14 @@ const { article } = Astro.props;
           <span
             class="text-[0.65rem] font-extrabold uppercase tracking-[0.13em] text-neutral-400 transition-colors group-hover:text-cidepac-700"
           >
-            Leer en {article.source}
+            {article.source ? `Fuente: ${article.source}` : "Ver publicación"}
           </span>
 
           <span
             class="grid size-9 place-items-center rounded-full border border-[#eaded9] text-cidepac-700 transition group-hover:border-cidepac-700 group-hover:bg-cidepac-700 group-hover:text-white"
             aria-hidden="true"
           >
-            ↗
+            →
           </span>
         </div>
       </div>

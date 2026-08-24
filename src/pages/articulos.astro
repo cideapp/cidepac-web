@@ -7,19 +7,28 @@ import ArticleCard from "../components/ArticleCard.astro";
 import FinalCTA from "../components/FinalCTA.astro";
 import Footer from "../components/Footer.astro";
 
-import { articles } from "../data/articles";
+import { getCollection } from "astro:content";
+import {
+  getArticleSlug,
+  sortArticles,
+  toArticleCardData,
+} from "../lib/articles";
+
+const articleEntries = (
+  await getCollection("articles", ({ data }) => !data.draft)
+).sort(sortArticles);
 
 const featuredArticle =
-  articles.find((article) => article.featured) ?? articles[0];
+  articleEntries.find((article) => article.data.featured) ?? articleEntries[0];
 
 const remainingArticles =
-  articles.filter((article) => article.id !== featuredArticle.id);
+  articleEntries.filter((article) => article.id !== featuredArticle.id);
 
 const articlesCount =
-  articles.filter((article) => article.type === "Artículo").length;
+  articleEntries.filter((article) => article.data.type === "Artículo").length;
 
 const reviewsCount =
-  articles.filter((article) => article.type === "Reseña").length;
+  articleEntries.filter((article) => article.data.type === "Reseña").length;
 ---
 
 <BaseLayout
@@ -73,7 +82,7 @@ const reviewsCount =
           >
             <div class="bg-[#faf6f3] p-6">
               <p class="display-title text-[2rem] text-cidepac-700">
-                {articles.length}
+                {articleEntries.length}
               </p>
 
               <p class="mt-2 text-xs font-semibold text-neutral-500">
@@ -125,9 +134,7 @@ const reviewsCount =
         </div>
 
         <a
-          href={featuredArticle.externalUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={`/articulos/${getArticleSlug(featuredArticle)}`}
           class="focus-ring group grid overflow-hidden border border-[#e5d8d3] bg-white lg:grid-cols-[1.05fr_0.95fr]"
         >
           <!-- Imagen -->
@@ -135,10 +142,10 @@ const reviewsCount =
             class="relative min-h-[360px] overflow-hidden bg-[#eee8e5] lg:min-h-[510px]"
           >
             {
-              featuredArticle.image ? (
+              featuredArticle.data.image ? (
                 <img
-                  src={featuredArticle.image}
-                  alt={`Portada del artículo ${featuredArticle.title}`}
+                  src={featuredArticle.data.image}
+                  alt={`Portada del artículo ${featuredArticle.data.title}`}
                   loading="lazy"
                   class="absolute inset-0 h-full w-full object-cover"
                 />
@@ -187,13 +194,13 @@ const reviewsCount =
               <p
                 class="text-xs font-extrabold uppercase tracking-[0.16em] text-cidepac-700"
               >
-                {featuredArticle.type}
+                {featuredArticle.data.type}
               </p>
 
               <h2
                 class="display-title mt-5 text-[3rem] leading-[0.95] text-neutral-950 transition-colors group-hover:text-cidepac-700 sm:text-[3.6rem]"
               >
-                {featuredArticle.title}
+                {featuredArticle.data.title}
               </h2>
             </div>
 
@@ -206,15 +213,15 @@ const reviewsCount =
                 </p>
 
                 <p class="mt-2 text-sm font-bold text-neutral-800">
-                  {featuredArticle.author}
+                  {featuredArticle.data.author}
                 </p>
               </div>
 
               <div
                 class="mt-7 inline-flex items-center gap-3 text-sm font-extrabold text-cidepac-700"
               >
-                Leer publicación original
-                <span aria-hidden="true">↗</span>
+                Ver publicación
+                <span aria-hidden="true">→</span>
               </div>
             </div>
           </div>
@@ -263,7 +270,7 @@ const reviewsCount =
         <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {
             remainingArticles.map((article) => (
-              <ArticleCard article={article} />
+              <ArticleCard article={toArticleCardData(article)} />
             ))
           }
         </div>
@@ -305,9 +312,9 @@ const reviewsCount =
             class="mt-7 border-l-4 border-cidepac-orange pl-5"
           >
             <p class="text-sm leading-7 text-neutral-500">
-              Próximamente los artículos podrán leerse directamente dentro de
-              esta página, con portada, autoría, contenido, referencias y
-              publicaciones relacionadas.
+              Cada publicación conserva su fuente original y queda preparada
+              para incorporar el cuerpo editorial completo cuando esté
+              disponible.
             </p>
           </div>
         </div>

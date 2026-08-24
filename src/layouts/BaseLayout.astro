@@ -5,6 +5,7 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  ogType?: "website" | "article";
 }
 
 const {
@@ -12,6 +13,7 @@ const {
   description =
     "Círculo de Estudios en Democracia, Partidos Políticos y Cultura Política de la Universidad Nacional de Trujillo.",
   image,
+  ogType = "website",
 } = Astro.props;
 
 const ogImage = image && Astro.site ? new URL(image, Astro.site).toString() : image;
@@ -30,7 +32,7 @@ const ogImage = image && Astro.site ? new URL(image, Astro.site).toString() : im
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     {ogImage && <meta property="og:image" content={ogImage} />}
 
     <meta name="theme-color" content="#bb080c" />
